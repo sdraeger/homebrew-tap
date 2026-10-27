@@ -1,0 +1,37 @@
+name: Update
+
+# Copies the formula of the latest DDALAB release (pre-releases excluded) into Formula/.
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  formula:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Fetch the formula
+        id: fetch
+        run: |
+          if gh release download --repo sdraeger/DDALAB --pattern ddalab.rb --dir "$RUNNER_TEMP" --clobber; then
+            cp "$RUNNER_TEMP/ddalab.rb" Formula/ddalab.rb
+          else
+            echo "The latest release has no ddalab.rb yet"
+          fi
+
+      - name: Commit a changed formula
+        run: |
+          git add Formula
+          if git diff --cached --quiet; then exit 0; fi
+          version="$(sed -n 's/^ *version "\(.*\)"/\1/p' Formula/ddalab.rb | head -n 1)"
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "ddalab ${version}"
+          git push
