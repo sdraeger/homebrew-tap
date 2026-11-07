@@ -1,21 +1,21 @@
 class Ddalab < Formula
   desc "Delay differential analysis of neurophysiological recordings: the ddalab command-line tool"
   homepage "https://ddalab.org/"
-  version "2.7.2"
+  version "2.8.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/sdraeger/DDALAB/releases/download/v2.7.2/ddalab-aarch64-apple-darwin.tar.xz"
-      sha256 "ec5e4f6600891beebebb527f3c7134744c2b457872dab369ff2accab06b8cf51"
+      url "https://github.com/sdraeger/DDALAB/releases/download/v2.8.0/ddalab-aarch64-apple-darwin.tar.xz"
+      sha256 "e07f4e9b7e83b6e5b63db88f2f45a6aba92858566e30f08864581d9494e556ce"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/sdraeger/DDALAB/releases/download/v2.7.2/ddalab-x86_64-apple-darwin.tar.xz"
-      sha256 "1ad07c1ce8ba63709cd5fc644848612ebb13f43e359182c51fa12cfdb6d5ef2a"
+      url "https://github.com/sdraeger/DDALAB/releases/download/v2.8.0/ddalab-x86_64-apple-darwin.tar.xz"
+      sha256 "d3f0d48ade9c23b139cff3c37c5bc72758a4a29b445f9d49140866e0fff8ff7c"
     end
   end
   if OS.linux?
     if Hardware::CPU.intel?
-      url "https://github.com/sdraeger/DDALAB/releases/download/v2.7.2/ddalab-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "839cd02eca0b030fe62070e7de04827ebdc39a15215f353ed08d88ca5aff8304"
+      url "https://github.com/sdraeger/DDALAB/releases/download/v2.8.0/ddalab-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "ff8753c3964e7c8f8a36e63aa330d65c4706259d4e1fcaaa70408817c413c8ee"
     end
   end
   license "MIT"
